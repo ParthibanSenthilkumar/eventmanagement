@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.login-form {
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+  padding: 30px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+}
+.form_control {
+  margin: 10px 0px;
+}
+.form_control input {
+  width: 96%;
+  outline: none;
+  padding: 7px 20px;
+  margin: 5px 0px 0px;
+}
+.btn-success {
+  max-width: 200px !important;
+  width: 100% !important;
+  margin: 10px 0px !important;
+}
+textarea,
+select {
+  display: block;
+  width: 96%;
+  margin: 5px 0px;
+  padding: 5px;
+  outline: none;
+}
