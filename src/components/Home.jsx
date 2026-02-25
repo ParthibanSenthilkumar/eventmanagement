@@ -14,7 +14,7 @@ const Home = () => {
         <Row>
           <Col lg={4}>
             {EventList.map((eventsdata) => {
-              <Card>
+              <Card key={eventsdata.id}>
                 <Card.Body>
                   <Card.Title>Card Title</Card.Title>
                   <Card.Text>
