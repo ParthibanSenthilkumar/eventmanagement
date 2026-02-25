@@ -3,6 +3,7 @@ import Header from "./Header";
 import Container from "react-bootstrap/esm/Container";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Row, Container } from "react-bootstrap";
 
 const Home = () => {
   const [EventList, setEventList] = useState([]);
