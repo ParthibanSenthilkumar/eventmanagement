@@ -27,7 +27,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className="login-form">
+      <div className="login-form mt-5">
         {isError && <p>{isError}</p>}
         <form onSubmit={handleSubmit}>
           <h2>Login Form</h2>
