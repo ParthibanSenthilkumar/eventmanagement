@@ -19,7 +19,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/register" element={<Registration />} />
-          <Route path="/createEvent" element={<EventForm />} />
+          <Route path="/create_event" element={<EventForm />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -10,9 +10,14 @@ import UserModal from "./UserModal";
 const Home = () => {
   const [EventList, setEventList] = useState([]);
   const [isError, setError] = useState(null);
+  const [CurrentEvent, setEvent] = useState(null);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
+  const handleShow = (eventData) => {
+    setEvent(eventData);
+    setShow(true);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,30 +45,39 @@ const Home = () => {
   return (
     <>
       <Header />
-        <Container>
-          {isError}
-          <Row className="mt-5">
-            {EventList.map((eventsdata) => (
-              <Col lg={4} md={6} sm={12} key={eventsdata.id}>
-                <Card className="mb-3">
-                  <Card.Body>
-                    <Card.Title><strong>Eventname:</strong> {eventsdata.Eventname}</Card.Title>
-                    <Card.Text>
-                      <strong>description:</strong> {eventsdata.description}
-                    </Card.Text>
-                    <Card.Text>
-                      <strong>category:</strong> {eventsdata.category}
-                    </Card.Text>
-                    <Button variant="primary" onClick={handleShow}>
-                      Book
-                    </Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      <UserModal show={show} handleClose={handleClose} />
+      <Container>
+        {isError}
+        <Row className="mt-5">
+          {EventList.map((eventsdata) => (
+            <Col lg={4} md={6} sm={12} key={eventsdata.id}>
+              <Card className="mb-3">
+                <Card.Body>
+                  <Card.Title>
+                    <strong>Eventname:</strong> {eventsdata.Eventname}
+                  </Card.Title>
+                  <Card.Text>
+                    <strong>description:</strong> {eventsdata.description}
+                  </Card.Text>
+                  <Card.Text>
+                    <strong>category:</strong> {eventsdata.category}
+                  </Card.Text>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleShow(eventsdata)}
+                  >
+                    Book
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <UserModal
+        show={show}
+        handleClose={handleClose}
+        Eventinfo={CurrentEvent}
+      />
     </>
   );
 };
