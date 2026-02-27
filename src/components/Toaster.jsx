@@ -2,8 +2,6 @@ import React from "react";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 
 export const successToast = (message) => {
-  console.log(message);
-  
   toast.success(message||"Data sent successfully");
 };
 
