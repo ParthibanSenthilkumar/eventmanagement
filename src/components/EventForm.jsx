@@ -1,36 +1,48 @@
 import React, { useState } from "react";
+import {successToast} from './Toaster'
+import Header from "./Header";
+
 
 const EventForm = () => {
-  const [isError, seterror] = useState(null);
+
+
   const [Eventname, seteventname] = useState("");
   const [location, setlocation] = useState("");
   const [category, setcategory] = useState("");
   const [description, setdescription] = useState("");
 
-  let handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("https://task-668b3-default-rtdb.firebaseio.com/event.json", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        Eventname: Eventname,
-        location: location,
-        category: category,
-        description: description,
-      }),
-    });
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await fetch(
+      "https://task-668b3-default-rtdb.firebaseio.com/event.json",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          Eventname,
+          location,
+          category,
+          description,
+        }),
+      }
+    );
+    successToast("Event Created Successfully");
     seteventname("");
     setlocation("");
     setcategory("");
     setdescription("");
-  };
+  } catch (error) {
+    errorToast(error.message);
+  }
+};
 
   return (
     <>
+    <Header />
       <div className="login-form mt-5">
-        {isError && <p>{isError}</p>}
         <form onSubmit={handleSubmit}>
           <h2>Event From</h2>
           <div className="form_control">
@@ -74,6 +86,7 @@ const EventForm = () => {
           <button className="btn btn-success">Create Event</button>
         </form>
       </div>
+
     </>
   );
 };

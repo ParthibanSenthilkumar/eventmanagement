@@ -2,11 +2,12 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "./Firebase";
 import { useNavigate } from "react-router";
+import { successToast,errorToast } from "./Toaster";
 
 const Login = () => {
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
-  const [isError, setError] = useState(null);
+
 
   const navigate = useNavigate();
 
@@ -18,17 +19,17 @@ const Login = () => {
         userEmail,
         userPassword,
       );
+      successToast("Login Successfully");
+      setEmail("");
+      setPassword("");
       navigate("/home");
     } catch (error) {
-      setError(error.message);
+      errorToast(error.message);
     }
-    setEmail("");
-    setPassword("");
   };
   return (
     <>
       <div className="login-form mt-5">
-        {isError && <p>{isError}</p>}
         <form onSubmit={handleSubmit}>
           <h2>Login Form</h2>
           <div className="form_control">

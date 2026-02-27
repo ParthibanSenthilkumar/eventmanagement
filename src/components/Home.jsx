@@ -6,16 +6,22 @@ import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import UserModal from "./UserModal";
+import Loader from "./Loader";
+import { errorToast } from "./Toaster";
 
 const Home = () => {
   const [EventList, setEventList] = useState([]);
-  const [isError, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [CurrentEvent, setEvent] = useState(null);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+  const handleShow = (eventData) => {
+    setEvent(eventData);
+    setShow(true);
+  };
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         let responseData = await axios.get(
           "https://task-668b3-default-rtdb.firebaseio.com/event.json",
@@ -31,7 +37,9 @@ const Home = () => {
         setEventList(resarry);
         console.log(resarry);
       } catch (error) {
-        setError(error.message);
+        errorToast(error.message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -40,30 +48,51 @@ const Home = () => {
   return (
     <>
       <Header />
-        <Container>
-          {isError}
-          <Row className="mt-5">
-            {EventList.map((eventsdata) => (
+      <Container>
+        <Row className="mt-5">
+          {loading ? (
+            <div
+              className="d-flex justify-content-center align-items-center"
+              style={{ height: "70vh" }}
+            >
+              <Loader />
+            </div>
+          ) : (
+            EventList.map((eventsdata) => (
               <Col lg={4} md={6} sm={12} key={eventsdata.id}>
                 <Card className="mb-3">
                   <Card.Body>
-                    <Card.Title><strong>Eventname:</strong> {eventsdata.Eventname}</Card.Title>
-                    <Card.Text>
-                      <strong>description:</strong> {eventsdata.description}
+                    <Card.Title>
+                      <strong>Eventname:</strong> {eventsdata.Eventname}
+                    </Card.Title>
+                      <Card.Text>
+                        <strong>Location:</strong> {eventsdata.location}
                     </Card.Text>
                     <Card.Text>
                       <strong>category:</strong> {eventsdata.category}
                     </Card.Text>
-                    <Button variant="primary" onClick={handleShow}>
+                    <Card.Text>
+                      <strong>description:</strong> {eventsdata.description}
+                    </Card.Text>
+
+                    <Button
+                      variant="primary"
+                      onClick={() => handleShow(eventsdata)}
+                    >
                       Book
                     </Button>
                   </Card.Body>
                 </Card>
               </Col>
-            ))}
-          </Row>
-        </Container>
-      <UserModal show={show} handleClose={handleClose} />
+            ))
+          )}
+        </Row>
+      </Container>
+      <UserModal
+        show={show}
+        handleClose={handleClose}
+        Eventinfo={CurrentEvent}
+      />
     </>
   );
 };

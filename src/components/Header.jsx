@@ -10,7 +10,7 @@ const Header = () => {
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand as={Link} to='/home'>EVENTS</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
@@ -29,7 +29,7 @@ const Header = () => {
               <Nav.Link as={Link} to="/register">
                 Register
               </Nav.Link>
-              <Nav.Link as={Link} to="/createEvent">
+              <Nav.Link as={Link} to="/create_event">
                 Create Event
               </Nav.Link>
             </Nav>

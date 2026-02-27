@@ -1,13 +1,13 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "./Firebase";
-
+import {errorToast, successToast} from './Toaster'
 const Login = () => {
   const [username, setusername] = useState("");
   const [course, setcourse] = useState("");
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
-  const [isError, setError] = useState(null);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,9 +17,14 @@ const Login = () => {
         userEmail,
         userPassword,
       );
+    successToast()
+    setusername("");
+    setEmail("");
+    setcourse("");
+    setPassword("");
       console.log("User:", userinfo.user);
     } catch (error) {
-      setError(error.message);
+      errorToast(error.message);
     }
     fetch("https://task-668b3-default-rtdb.firebaseio.com/students.json", {
       method: "POST",
@@ -31,15 +36,10 @@ const Login = () => {
         course: course,
       }),
     });
-    setusername("");
-    setEmail("");
-    setcourse("");
-    setPassword("");
   };
   return (
     <>
       <div className="login-form mt-5">
-        {isError && <p>{isError}</p>}
         <form onSubmit={handleSubmit}>
           <h2>Registration From</h2>
           <div className="form_control">

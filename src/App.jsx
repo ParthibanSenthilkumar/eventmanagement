@@ -7,11 +7,13 @@ import { BrowserRouter, Routes, Route, Link } from "react-router";
 import Upcoming from "./components/Upcoming";
 import Events from "./components/Events";
 import EventForm from "./components/EventForm";
+import Toaster from "./components/Toaster";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Toaster />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
@@ -19,7 +21,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/register" element={<Registration />} />
-          <Route path="/createEvent" element={<EventForm />} />
+          <Route path="/create_event" element={<EventForm />} />
         </Routes>
       </BrowserRouter>
     </>
