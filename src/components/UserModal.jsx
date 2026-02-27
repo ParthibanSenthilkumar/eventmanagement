@@ -13,6 +13,7 @@ const UserModal = ({ show, handleClose }) => {
   }
 
   return (
+
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
