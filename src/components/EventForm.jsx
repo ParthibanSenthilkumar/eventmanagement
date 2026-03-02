@@ -1,47 +1,48 @@
 import React, { useState } from "react";
-import {successToast} from './Toaster'
+import { successToast } from "./Toaster";
 import Header from "./Header";
 
-
 const EventForm = () => {
-
-
   const [Eventname, seteventname] = useState("");
   const [location, setlocation] = useState("");
   const [category, setcategory] = useState("");
   const [description, setdescription] = useState("");
+  const [imgUrl, setimgUrl] = useState(null);
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await fetch(
-      "https://task-668b3-default-rtdb.firebaseio.com/event.json",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let imgpath = `assets/${imgUrl}`;
+    try {
+      const response = await fetch(
+        "https://task-668b3-default-rtdb.firebaseio.com/event.json",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            Eventname: Eventname,
+            location: location,
+            category: category,
+            description: description,
+            imgUrl: imgpath,
+          }),
         },
-        body: JSON.stringify({
-          Eventname,
-          location,
-          category,
-          description,
-        }),
-      }
-    );
-    successToast("Event Created Successfully");
-    seteventname("");
-    setlocation("");
-    setcategory("");
-    setdescription("");
-  } catch (error) {
-    errorToast(error.message);
-  }
-};
+      );
+      successToast("Event Created Successfully");
+      seteventname("");
+      setlocation("");
+      setcategory("");
+      setdescription("");
+      setimgUrl(null);
+    } catch (error) {
+      errorToast(error.message);
+    }
+  };
 
   return (
     <>
-    <Header />
+      <Header />
       <div className="login-form mt-5">
         <form onSubmit={handleSubmit}>
           <h2>Event From</h2>
@@ -83,10 +84,13 @@ const handleSubmit = async (e) => {
               onChange={(e) => setdescription(e.target.value)}
             />
           </div>
+          <div className="form_control">
+            <label htmlFor="image">image</label>
+            <input type="file" onChange={(e) => setimgUrl(e.target.files[0])} />
+          </div>
           <button className="btn btn-success">Create Event</button>
         </form>
       </div>
-
     </>
   );
 };

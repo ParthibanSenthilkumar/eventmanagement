@@ -8,19 +8,16 @@ const UserModal = ({ show, handleClose, Eventinfo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(
-      `https://task-668b3-default-rtdb.firebaseio.com/booking.json`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          Eventinfo,
-          Email: userEmail,
-        }), 
+    fetch(`https://task-668b3-default-rtdb.firebaseio.com/booking.json`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
-    );
+      body: JSON.stringify({
+        ...Eventinfo,
+        Email: userEmail,
+      }),
+    });
     handleClose();
   };
   return (

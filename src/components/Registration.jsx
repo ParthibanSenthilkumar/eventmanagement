@@ -1,13 +1,13 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "./Firebase";
-import {errorToast, successToast} from './Toaster'
+import { errorToast, successToast } from "./Toaster";
+
 const Login = () => {
   const [username, setusername] = useState("");
   const [course, setcourse] = useState("");
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,11 +17,11 @@ const Login = () => {
         userEmail,
         userPassword,
       );
-    successToast()
-    setusername("");
-    setEmail("");
-    setcourse("");
-    setPassword("");
+      successToast();
+      setusername("");
+      setEmail("");
+      setcourse("");
+      setPassword("");
       console.log("User:", userinfo.user);
     } catch (error) {
       errorToast(error.message);
