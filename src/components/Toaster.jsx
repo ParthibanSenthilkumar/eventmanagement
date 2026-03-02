@@ -2,9 +2,7 @@ import React from "react";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 
 export const successToast = (message) => {
-  console.log(message);
-  
-  toast.success(message||"Data sent successfully");
+  toast.success(message || "Data sent successfully");
 };
 
 export const errorToast = (message) => {
@@ -13,13 +11,12 @@ export const errorToast = (message) => {
 };
 
 export const editToast = (message) => {
-  toast.success(message||"Date Updated successfully");
+  toast.success(message || "Date Updated successfully");
 };
 
 const Toaster = () => {
   return (
     <>
-
       <ToastContainer
         position="top-right"
         autoClose={4000}

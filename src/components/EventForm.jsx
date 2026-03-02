@@ -93,10 +93,9 @@ const EventForm = () => {
             <label>Image</label>
             <input
               type="file"
-              onChange={(e) => setimgUrl(e.target.files[0]?.name)}
+              onChange={(e) => setimgUrl(e.target.files?.name)}
             />
           </div>
-
           <button className="btn btn-success">Create Event</button>
         </form>
       </div>
