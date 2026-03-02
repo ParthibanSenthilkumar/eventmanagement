@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const UserModal = ({ show, handleClose, Eventinfo }) => {
   const [userEmail, setEmail] = useState("");
-  console.log(Eventinfo?.id);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { successToast } from "./Toaster";
+import { successToast, errorToast } from "./Toaster";
 import Header from "./Header";
 
 const EventForm = () => {
@@ -7,34 +7,34 @@ const EventForm = () => {
   const [location, setlocation] = useState("");
   const [category, setcategory] = useState("");
   const [description, setdescription] = useState("");
-  const [imgUrl, setimgUrl] = useState(null);
+  const [imgUrl, setimgUrl] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let imgpath = `assets/${imgUrl}`;
+
+    let imgpath = `/assets/${imgUrl}`;
+
     try {
-      const response = await fetch(
-        "https://task-668b3-default-rtdb.firebaseio.com/event.json",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            Eventname: Eventname,
-            location: location,
-            category: category,
-            description: description,
-            imgUrl: imgpath,
-          }),
+      await fetch("https://task-668b3-default-rtdb.firebaseio.com/event.json", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          Eventname,
+          location,
+          category,
+          description,
+          imgUrl: imgpath,
+        }),
+      });
+
       successToast("Event Created Successfully");
       seteventname("");
       setlocation("");
       setcategory("");
       setdescription("");
-      setimgUrl(null);
+      setimgUrl("");
     } catch (error) {
       errorToast(error.message);
     }
@@ -45,9 +45,10 @@ const EventForm = () => {
       <Header />
       <div className="login-form mt-5">
         <form onSubmit={handleSubmit}>
-          <h2>Event From</h2>
+          <h2>Event Form</h2>
+
           <div className="form_control">
-            <label htmlFor="EventName">Event Name</label>
+            <label>Event Name</label>
             <input
               type="text"
               placeholder="Event Name"
@@ -55,8 +56,9 @@ const EventForm = () => {
               onChange={(e) => seteventname(e.target.value)}
             />
           </div>
+
           <div className="form_control">
-            <label htmlFor="location">Location</label>
+            <label>Location</label>
             <input
               type="text"
               placeholder="Enter Your location"
@@ -64,8 +66,9 @@ const EventForm = () => {
               onChange={(e) => setlocation(e.target.value)}
             />
           </div>
+
           <div className="form_control">
-            <label htmlFor="category">category</label>
+            <label>Category</label>
             <select
               value={category}
               onChange={(e) => setcategory(e.target.value)}
@@ -76,18 +79,24 @@ const EventForm = () => {
               <option value="party">Party</option>
             </select>
           </div>
+
           <div className="form_control">
-            <label htmlFor="description">Description</label>
+            <label>Description</label>
             <textarea
               value={description}
               placeholder="Event Description"
               onChange={(e) => setdescription(e.target.value)}
             />
           </div>
+
           <div className="form_control">
-            <label htmlFor="image">image</label>
-            <input type="file" onChange={(e) => setimgUrl(e.target.files[0])} />
+            <label>Image</label>
+            <input
+              type="file"
+              onChange={(e) => setimgUrl(e.target.files[0]?.name)}
+            />
           </div>
+
           <button className="btn btn-success">Create Event</button>
         </form>
       </div>
