@@ -3,7 +3,6 @@ import { successToast, errorToast } from "./Toaster";
 import Header from "./Header";
 
 const EventForm = () => {
-
   const [Eventname, seteventname] = useState("");
   const [location, setlocation] = useState("");
   const [category, setcategory] = useState("");
@@ -46,7 +45,7 @@ const EventForm = () => {
       <Header />
       <div className="login-form mt-5">
         <form onSubmit={handleSubmit}>
-          <h2>Event Form</h2>
+          <h2 className="mb-5">Event Form</h2>
 
           <div className="form_control">
             <label>Event Name</label>
@@ -57,7 +56,6 @@ const EventForm = () => {
               onChange={(e) => seteventname(e.target.value)}
             />
           </div>
-
           <div className="form_control">
             <label>Location</label>
             <input
@@ -97,12 +95,11 @@ const EventForm = () => {
               onChange={(e) => setimgUrl(e.target.files?.name)}
             />
           </div>
-          <button className="btn btn-success">Create Event</button>
+          <button className="but log-but">Create Event</button>
         </form>
       </div>
     </>
   );
 };
-
 
 export default EventForm;

@@ -8,6 +8,7 @@ import axios from "axios";
 import UserModal from "./UserModal";
 import Loader from "./Loader";
 import { errorToast } from "./Toaster";
+import eventImg from "../assets/images/event_img.jpg";
 
 const Home = () => {
   const [EventList, setEventList] = useState([]);
@@ -59,29 +60,30 @@ const Home = () => {
             </div>
           ) : (
             EventList.map((eventsdata) => (
-              <Col lg={4} md={6} sm={12} key={eventsdata.id}>
+              <Col lg={12} key={eventsdata.id}>
                 <Card className="mb-3">
+                  <Card.Img variant="left" src={eventImg} />
                   <Card.Body>
-                    <Card.Title>
-                      <strong>Eventname:</strong> {eventsdata.Eventname}
-                    </Card.Title>
-                      <Card.Text>
-                        <strong>Location:</strong> {eventsdata.location}
+                    <h2>{eventsdata.Eventname}</h2>
+                    <Card.Text>
+                      <i className="fa-solid fa-map-pin"></i>{" "}
+                      {eventsdata.location}
                     </Card.Text>
                     <Card.Text>
-                      <strong>category:</strong> {eventsdata.category}
+                      <i className="fa-solid fa-layer-group"></i>{" "}
+                      {eventsdata.category}
                     </Card.Text>
                     <Card.Text>
-                      <strong>description:</strong> {eventsdata.description}
+                      <i className="fa-solid fa-align-center"></i>{" "}
+                      {eventsdata.description}
                     </Card.Text>
-
-                    <Button
-                      variant="primary"
-                      onClick={() => handleShow(eventsdata)}
-                    >
-                      Book
-                    </Button>
                   </Card.Body>
+                  <Button
+                    onClick={() => handleShow(eventsdata)}
+                    className="but cta-but"
+                  >
+                    Book
+                  </Button>
                 </Card>
               </Col>
             ))

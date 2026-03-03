@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "./Firebase";
 import { errorToast, successToast } from "./Toaster";
+import { Link } from "react-router";
 
 const Login = () => {
   const [username, setusername] = useState("");
@@ -41,7 +42,7 @@ const Login = () => {
     <>
       <div className="login-form mt-5">
         <form onSubmit={handleSubmit}>
-          <h2>Registration From</h2>
+          <h2 className="mb-5">Registration From</h2>
           <div className="form_control">
             <label htmlFor="username">Username</label>
             <input
@@ -78,7 +79,10 @@ const Login = () => {
               onChange={(e) => setcourse(e.target.value)}
             />
           </div>
-          <button className="btn btn-success">Register</button>
+          <button className="but log-but">Register</button>
+          <h5 className="logfoot-text">
+            Already have an account? <Link to="/login">Login Now</Link>
+          </h5>
         </form>
       </div>
     </>

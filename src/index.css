@@ -1,35 +1,178 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    scroll-behavior: smooth;
+    font-family: "Inter", sans-serif;
+  }
+  a {
+    text-decoration: unset;
+    cursor: pointer;
+  }
+  ul li {
+    list-style: unset;
+    padding: 0;
+    margin: 0;
+  }
+ 
+  
+  .but {
+    font-size: 16px;
+    font-weight: 400;
+    background: linear-gradient(45deg, #2e3192, #1bffff);
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+  }
+
+  /* header css part */
+
+  .navbar {
+    background: #edf9fb;
+  }
+  .nav-link {
+    font-size: 16px !important;
+    font-weight: 400;
+    color: #000000 !important;
+    padding: 5px 7px !important;
+  }
+  .top-but {
+    padding: 5px 20px !important;
+    color: #fff !important;
+  }
+
+  /* header css part */
+
+  /* card css part */
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between !important;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgb(0 0 0 / 9%);
+    border-radius: 10px;
+    padding: 0px 20px !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+  .card-body h2 {
+    font-size: 25px;
+    font-weight: 600;
+    color: #2b59a7;
+    text-transform: uppercase;
+  }
+  .card-text {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 5px 0px 0px;
+    padding: 0px;
+    color: #393939;
+  }
+  .card-text i {
+    color: #22b6d9;
+  }
+  .cta-but {
+    max-width: 200px;
+    width: 100%;
+    color: #fff;
+    background: linear-gradient(45deg, #c33764, #1d2671) !important;
+  }
+  button {
+    border: unset !important;
+    outline: unset !important;
+    box-shadow: unset !important;
+  }
+  .card-img-left {
+    max-width: 215px;
+    border-radius: 5px;
+  }
+/* card css part */
+
+/* form css part */
+  .log-but {
+    width: 100%;
+    color: #fff;
+    margin-top: 20px;
+  }
+  form h2 {
+    font-size: 35px;
+    font-weight: 500;
+    color: #03045e;
+    text-align: center;
+  }
+  .login-form {
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    padding: 30px 40px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 5px;
+    border: 1px solid #ddddddb0;
+  }
+  .forget-txt {
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: unset;
+    color: #5b5858;
+    margin-top: 15px;
+    display: block;
+  }
+  .logfoot-text {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 18px;
+  }
+  .logfoot-text Link {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3e99 !important;
+  }
+  .form_group {
+    margin-top: 30px;
+  }
+  .form_control {
+    margin: 10px 0px;
+  }
+  .form_control input {
+    width: 100%;
+    padding: 7px 20px;
+    margin: 5px 0px 0px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ddd;
+  }
+  .btn-success {
+    max-width: 200px !important;
+    width: 100% !important;
+    margin: 10px 0px !important;
+  }
+  textarea,
+  select {
+    display: block;
+    width: 100%;
+    margin: 5px 0px;
+    padding: 8px;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    color: #5b5858;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+/* form css part */
+
+/* modal css part */
+.modal-body h3{
+    font-size: 15px;
+    font-weight: 500;
+    color: #393939;
 }
-.login-form {
-  max-width: 600px;
-  width: 100%;
-  margin: auto;
-  padding: 30px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  border-radius: 5px;
-}
-.form_control {
-  margin: 10px 0px;
-}
-.form_control input {
-  width: 96%;
-  outline: none;
-  padding: 7px 20px;
-  margin: 5px 0px 0px;
-}
-.btn-success {
-  max-width: 200px !important;
-  width: 100% !important;
-  margin: 10px 0px !important;
-}
-textarea,
-select {
-  display: block;
-  width: 96%;
-  margin: 5px 0px;
-  padding: 5px;
-  outline: none;
-}
+/* modal css part */
