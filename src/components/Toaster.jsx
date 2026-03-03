@@ -17,7 +17,6 @@ export const editToast = (message) => {
 const Toaster = () => {
   return (
     <>
-
       <ToastContainer
         position="top-right"
         autoClose={4000}
@@ -36,3 +35,4 @@ const Toaster = () => {
 };
 
 export default Toaster;
+

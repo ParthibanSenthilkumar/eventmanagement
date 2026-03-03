@@ -35,6 +35,7 @@ const UserModal = ({ show, handleClose, Eventinfo }) => {
           <form>
             <div className="form_control">
               <label htmlFor="Email">Email</label>
+              
               <input
                 type="email"
                 placeholder="Enter Your Email"

@@ -5,7 +5,6 @@ import Header from "./Header";
 
 const EventForm = () => {
 
-
   const [Eventname, seteventname] = useState("");
   const [location, setlocation] = useState("");
   const [category, setcategory] = useState("");
@@ -90,5 +89,6 @@ const handleSubmit = async (e) => {
     </>
   );
 };
+
 
 export default EventForm;
