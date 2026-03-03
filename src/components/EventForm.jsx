@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import {successToast} from './Toaster'
+import { successToast, errorToast } from "./Toaster";
 import Header from "./Header";
-
 
 const EventForm = () => {
 
@@ -9,43 +8,48 @@ const EventForm = () => {
   const [location, setlocation] = useState("");
   const [category, setcategory] = useState("");
   const [description, setdescription] = useState("");
+  const [imgUrl, setimgUrl] = useState("");
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await fetch(
-      "https://task-668b3-default-rtdb.firebaseio.com/event.json",
-      {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let imgpath = `/assets/${imgUrl}`;
+
+    try {
+      await fetch("https://task-668b3-default-rtdb.firebaseio.com/event.json", {
         method: "POST",
         headers: {
-          "content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           Eventname,
           location,
           category,
           description,
+          imgUrl: imgpath,
         }),
-      }
-    );
-    successToast("Event Created Successfully");
-    seteventname("");
-    setlocation("");
-    setcategory("");
-    setdescription("");
-  } catch (error) {
-    errorToast(error.message);
-  }
-};
+      });
+
+      successToast("Event Created Successfully");
+      seteventname("");
+      setlocation("");
+      setcategory("");
+      setdescription("");
+      setimgUrl("");
+    } catch (error) {
+      errorToast(error.message);
+    }
+  };
 
   return (
     <>
-    <Header />
+      <Header />
       <div className="login-form mt-5">
         <form onSubmit={handleSubmit}>
-          <h2>Event From</h2>
+          <h2>Event Form</h2>
+
           <div className="form_control">
-            <label htmlFor="EventName">Event Name</label>
+            <label>Event Name</label>
             <input
               type="text"
               placeholder="Event Name"
@@ -53,8 +57,9 @@ const handleSubmit = async (e) => {
               onChange={(e) => seteventname(e.target.value)}
             />
           </div>
+
           <div className="form_control">
-            <label htmlFor="location">Location</label>
+            <label>Location</label>
             <input
               type="text"
               placeholder="Enter Your location"
@@ -62,8 +67,9 @@ const handleSubmit = async (e) => {
               onChange={(e) => setlocation(e.target.value)}
             />
           </div>
+
           <div className="form_control">
-            <label htmlFor="category">category</label>
+            <label>Category</label>
             <select
               value={category}
               onChange={(e) => setcategory(e.target.value)}
@@ -74,18 +80,26 @@ const handleSubmit = async (e) => {
               <option value="party">Party</option>
             </select>
           </div>
+
           <div className="form_control">
-            <label htmlFor="description">Description</label>
+            <label>Description</label>
             <textarea
               value={description}
               placeholder="Event Description"
               onChange={(e) => setdescription(e.target.value)}
             />
           </div>
+
+          <div className="form_control">
+            <label>Image</label>
+            <input
+              type="file"
+              onChange={(e) => setimgUrl(e.target.files?.name)}
+            />
+          </div>
           <button className="btn btn-success">Create Event</button>
         </form>
       </div>
-
     </>
   );
 };

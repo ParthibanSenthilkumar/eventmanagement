@@ -2,12 +2,12 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "./Firebase";
 import { useNavigate } from "react-router";
-import { successToast,errorToast } from "./Toaster";
+import { successToast, errorToast } from "./Toaster";
+import Header from "./Header";
 
 const Login = () => {
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
-
 
   const navigate = useNavigate();
 
